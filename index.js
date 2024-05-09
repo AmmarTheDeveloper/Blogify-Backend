@@ -5,7 +5,7 @@ const usersRouter = require( './routes/users' )
 const blogsRouter = require( "./routes/blogs" )
 const cors = require( 'cors' );
 const session = require( 'express-session' )
-const MongoStore = require( 'connect-mongo' )( session );
+const MongoStore = require( 'connect-mongo' );
 require( 'dotenv' ).config();
 const redisService = require( './services/redis' )
 
@@ -27,7 +27,9 @@ app.use( session( {
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    store: new MongoStore( { mongooseConnection: mongoose.connection } ),
+    store: MongoStore.create( {
+        client: mongoose.connection.getClient()
+    } )
 } ) )
 
 app.use( "/users", usersRouter );
