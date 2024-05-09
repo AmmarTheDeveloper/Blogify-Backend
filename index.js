@@ -6,6 +6,8 @@ const blogsRouter = require( "./routes/blogs" )
 const cors = require( 'cors' );
 const session = require( 'express-session' )
 require( 'dotenv' ).config();
+const redisService = require( './services/redis' )
+
 
 const PORT = process.env.PORT || 5000;
 
