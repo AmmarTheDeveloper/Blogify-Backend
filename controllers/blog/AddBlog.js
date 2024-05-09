@@ -18,7 +18,6 @@ async function AddBlog ( req, res ) {
         );
         return res.status( 200 ).json( { status: "success", message: "Blog created successfully." } );
     } catch ( error ) {
-        // console.log( error );
         return res.status( 404 ).json( { status: "error", message: "Fill required fields." } );
     }
 
@@ -31,8 +30,13 @@ function uploadCoverImage () {
             cb( null, './public/uploads/coverImage/' )
         },
         filename: function ( req, file, cb ) {
-            const uniqueSuffix = Date.now() + "-" + file.originalname
-            cb( null, file.fieldname + '-' + uniqueSuffix )
+            try {
+                const uniqueSuffix = Date.now() + "-" + file.originalname
+                cb( null, file.fieldname + '-' + uniqueSuffix )
+            } catch ( error ) {
+                console.log( error )
+                cb( error )
+            }
         }
     } )
 
