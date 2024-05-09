@@ -32,6 +32,7 @@ app.use( session( {
     } ),
     cookie: {
         httpOnly: false,
+        secure: false,
         maxAge: 1000 * 60 * 60 * 24 // Session duration in milliseconds (1 day)
     }
 } ) )
