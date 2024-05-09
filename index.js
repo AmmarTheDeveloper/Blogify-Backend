@@ -29,12 +29,7 @@ app.use( session( {
     saveUninitialized: true,
     store: MongoStore.create( {
         client: mongoose.connection.getClient()
-    } ),
-    cookie: {
-        httpOnly: false,
-        secure: false,
-        maxAge: 1000 * 60 * 60 * 24 // Session duration in milliseconds (1 day)
-    }
+    } )
 } ) )
 
 app.use( "/users", usersRouter );
