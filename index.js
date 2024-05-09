@@ -26,10 +26,13 @@ app.use( cors( {
 app.use( session( {
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: MongoStore.create( {
         client: mongoose.connection.getClient()
-    } )
+    } ),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // Session duration in milliseconds (1 day)
+    }
 } ) )
 
 app.use( "/users", usersRouter );
