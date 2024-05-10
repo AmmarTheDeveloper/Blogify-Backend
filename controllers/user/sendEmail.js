@@ -21,6 +21,7 @@ const sendEmail = ( { email, subject, html } ) => {
     }
 
     transporter.sendMail( receiver, ( err, emailResponse ) => {
+        console.log( "error occured while sending otp to email" )
         if ( err ) throw err;
     } )
 

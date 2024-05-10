@@ -6,9 +6,10 @@ const { setCache, getCache } = require( '../../services/redis' )
 
 const OTP_EXPIRY_TIME = 60
 
-
 const ForgetPassword = async ( req, res ) => {
     try {
+
+        console.log( 'forget password api is hitted' )
 
         let { email } = req.body
         if ( !email ) res.status( 400 ).json( { status: "error", message: "Bad request" } )

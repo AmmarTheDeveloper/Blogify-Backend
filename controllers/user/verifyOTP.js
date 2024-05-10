@@ -13,7 +13,6 @@ const verifyOTP = async ( req, res ) => {
         if ( !isValid( storedOTP, otp ) ) return res.status( 400 ).json( { status: "error", message: "invalid OTP." } )
         req.session.email = email
         req.session.save()
-        console.log( "checking is email is saved on verify otp", req.session )
         return res.status( 200 ).json( { status: "success", message: "OTP verification successfull!" } )
 
     } catch ( error ) {

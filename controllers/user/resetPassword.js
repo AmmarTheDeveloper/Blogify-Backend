@@ -5,7 +5,6 @@ const resetPassword = async ( req, res ) => {
     try {
         let { password } = req.body
         let { email } = req.session
-        console.log( req.session )
         if ( !password || !email )
             return res.status( 404 ).json( { status: "error", message: "Email or password are not provided." } )
         let data = await user.findOne( { email: email } )
