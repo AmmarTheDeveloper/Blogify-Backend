@@ -27,9 +27,17 @@ app.use( session( {
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    proxy: true,
+    name: 'BlogifyCookie',
     store: MongoStore.create( {
         client: mongoose.connection.getClient()
-    } )
+    } ),
+    cookie: {
+        // secure: true,
+        httpOnly: true,
+        sameSite: 'none'
+    }
+
 } ) )
 
 app.use( "/users", usersRouter );
